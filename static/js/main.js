@@ -16,10 +16,10 @@ var main = {
     });
 
     // On mobile, hide the avatar when expanding the navbar menu
-    $('#main-navbar').on('show.bs.collapse', function () {
+    $('#navbarSupportedContent').on('show.bs.collapse', function () {
       $(".navbar").addClass("top-nav-expanded");
     });
-    $('#main-navbar').on('hidden.bs.collapse', function () {
+    $('#navbarSupportedContent').on('hidden.bs.collapse', function () {
       $(".navbar").removeClass("top-nav-expanded");
     });
 
