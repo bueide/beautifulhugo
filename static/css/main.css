@@ -287,9 +287,6 @@ img {
   word-break: normal;
   background: var(--primary, #04378b);
 }
-.navbar-custom .nav-item.dropdown .dropdown-menu a {
-  color: var(--surface3, #f9f9f9);
-}
 .navbar-custom .nav-item.dropdown .dropdown-menu .dropdown-item {
   white-space: normal;
   padding: 0.625rem;
