@@ -202,7 +202,7 @@ img {
   transition: visibility 0.5s, opacity 0.5s ease-in-out;
   left: 50%;
   width: 50px;
-  margin-top: 25px;
+  margin-top: 75px;
 }
 .navbar-custom .avatar-container  .avatar-img-border {
   width: 100%;
