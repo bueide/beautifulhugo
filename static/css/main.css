@@ -1,3 +1,47 @@
+/* --- Establishing variables for light & dark color palettes --- */
+
+:root[color-mode="light"] {
+  --surface1: #e6e6e6;
+  --surface2: #f2f2f2;
+  --surface3: #f9f9f9;
+  --surface4: #fbfbfb;
+  --element1: #111111;
+  --element2: #222222;
+  --element3: #333333;
+  --element4: #d8d8d8;
+  --primary: #04378b;
+  --secondary: #007cc4;
+  --tertiary: #00bed4;
+  --quaternary: #6bfbce;
+  --fa: #022153;
+  --pager: #04378b;
+}
+
+:root[color-mode="light"] .light--hidden {
+  display: none;
+}
+
+:root[color-mode="dark"] {
+  --surface1: #262626;
+  --surface2: #333333;
+  --surface3: #C1CAE6;
+  --surface4: #101010;
+  --element1: #eeeeee;
+  --element2: #dddddd;
+  --element3: #cccccc;
+  --element4: #808080;
+  --primary: #262626;
+  --secondary: #98dbfe;
+  --tertiary: #61eef7;
+  --quaternary: #71faca;
+  --fa: #353535;
+  --pager: #c1cae6;
+}
+
+:root[color-mode="dark"] .dark--hidden {
+  display: none;
+} 
+
 /* --- General --- */
 
 html {
@@ -7,9 +51,9 @@ html {
 body {
   font-family: 'Lora', 'Times New Roman', serif;
   font-size: 1.125rem;
-  color: #404040;
+  color: var(--element1, #111111);
   position: relative;
-  background-color: #FFFFFF;
+  background: var(--surface4, #fbfbfb);
   
 }
 p {
@@ -37,14 +81,14 @@ h1, h2, h3, h4 {
   margin-top: 1.25rem;
 }
 a {
-  color: #008AFF;
+  color: var(--secondary, #007cc4);
 }
 a:hover,
 a:focus {
-  color: #0085A1;
+  color: var(--tertiary, #00BED4);
 }
 blockquote {
-  color: #808080;
+  color: var(--element3, #333333);
   font-style: italic;
 }
 blockquote p:first-child {
@@ -71,14 +115,14 @@ hr.small {
 }
 
 ::-moz-selection {
-  color: #fff;
+  color: black;
   text-shadow: none;
-  background-color: #0085A1;
+  background: var(--quaternary, #6BFBCe);
 }
 ::selection {
-  color: #fff;
+  color: black;
   text-shadow: none;
-  background-color: #0085A1;
+  background: var(--quaternary, #6BFBCe);
 }
 img::selection {
   color: #fff;
@@ -113,8 +157,8 @@ img {
 /* --- Navbar --- */
 
 .navbar-custom {
-  background-color: #EAEAEA;
-  border-bottom: 1px solid #DDDDDD;
+  background: var(--primary, #04378b);
+  border-bottom: 1px solid var(--element4, #808080);
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   
   -webkit-transition: padding .5s ease-in-out;
@@ -178,7 +222,7 @@ img {
 .navbar-custom .navbar-brand,
 .navbar-custom .navbar-nav .nav-link {
   font-weight: 800;
-  color: #404040;
+  color: var(--surface3, #f9f9f9);
 }
 
 .navbar-toggler {
@@ -191,7 +235,7 @@ img {
 }
 
 .navbar-custom .navbar-toggler[aria-expanded="true"] {
-  background-color: rgba(0, 0, 0, 0.2);
+  background: var(--primary, #04378b);
 }
 
 .dropdown-toggle::after {
@@ -225,12 +269,12 @@ img {
 
 @media (min-width: 992px) {
   .navbar-custom .nav-item.dropdown:hover {
-    background: rgba(0, 0, 0, 0.1);
+    background: var(--primary, #04378b);
   }
 }
 
 .navbar-custom .nav-item.dropdown.show {
-  background: rgba(0, 0, 0, 0.2);
+  background: var(--primary, #04378b);
 }
 
 .navbar-custom .nav-item.dropdown .dropdown-menu {
@@ -245,11 +289,11 @@ img {
 .navbar-custom .nav-item.dropdown .dropdown-menu .dropdown-item {
   white-space: normal;
   padding: 0.625rem;
-  background-color: #EAEAEA;
+  background: var(--primary, #04378b);
   text-decoration: none !important;
   border-width: 0 1px 1px 1px;
   font-weight: normal;
-  color: #404040;
+  color: var(--surface3, #f9f9f9);
 }
 
 @media (min-width: 992px) {
@@ -259,14 +303,14 @@ img {
 
   .navbar-custom .nav-item.dropdown .dropdown-menu .dropdown-item {
     padding-left: 0.625rem;
-    border: 1px solid #DDDDDD;
+    border: 1px solid var(--element4, #808080);
     border-width: 0 1px 1px;
   }
 }
 
 @media (max-width: 992px) {
   .navbar-custom .navbar-collapse {
-    border-top: 1px solid #DDDDDD;
+    border-top: 1px solid var(--element4, #808080);
     margin: 0 -1rem;
   }
 
@@ -279,7 +323,7 @@ img {
   }
 
   .navbar-custom .nav-item.dropdown.show {
-    background: rgba(0, 0, 0, 0.2);
+    background: var(--primary, #04378b);
   }
 
   .navbar-custom .nav-item.dropdown .dropdown-menu .dropdown-item {
@@ -292,7 +336,7 @@ img {
 .navbar-custom .navbar-nav .nav-link:focus,
 .navbar-custom .navbar-nav .dropdown-menu .dropdown-item:hover,
 .navbar-custom .navbar-nav .dropdown-menu .dropdown-item:focus {
-  color: #0085A1;
+  color: var(--tertiary, #00BED4);
 }
 
 .navbar-custom .avatar-container {
