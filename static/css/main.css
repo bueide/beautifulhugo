@@ -977,6 +977,8 @@ table tr td :last-child {
 } 
 
 .lightdark-toggle {
+  position: absolute;
+  display: inline-block;
   height: 1.5rem;
   width: 1.5rem;
 }
