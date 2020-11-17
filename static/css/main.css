@@ -964,7 +964,7 @@ table tr td :last-child {
   align-items: center;
   justify-content: center;
   padding: 0rem;
-  margin: 0 auto 1.5rem;
+  margin: 0 auto 0;
   font-family: var(--sans);
   font-size: 1rem;
   font-weight: 600;
@@ -975,6 +975,11 @@ table tr td :last-child {
   border-radius: var(--radius);
   box-shadow: var(--box-shadow);
 } 
+
+.lightdark-toggle {
+  height: 1.5rem;
+  width: 1.5rem;
+}
 /*
 .color-mode__btn svg {
   width: 15px;
