@@ -957,7 +957,7 @@ table tr td :last-child {
   }
 }
 
-/* --- Dark Mode Toggle --- 
+/* --- Dark Mode Toggle --- */
 
 .color-mode__btn {
   display: flex;
@@ -969,15 +969,13 @@ table tr td :last-child {
   font-size: 1rem;
   font-weight: 600;
   line-height: 1;
-  color: #111111;
-  color: var(--element1); 
   cursor: pointer;
   background: none;
   border: none;
   border-radius: var(--radius);
   box-shadow: var(--box-shadow);
 } 
-
+/*
 .color-mode__btn svg {
   width: 15px;
   height: 15px;
