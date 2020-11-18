@@ -1,0 +1,30 @@
+<style>
+  div.gallery {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  div.gallery a {
+    flex-grow: 1;
+    object-fit: cover;
+    margin: 2px;
+    display: flex;
+  }
+  
+  div.gallery a img {            
+    height: 200px;
+    object-fit: cover;
+    flex-grow: 1;
+  }  
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" />
+
+<div class="gallery">
+  {{ range $image := .Page.Resources.Match "img/*.jpg" }}
+    {{ $thumb := $image.Resize "250x" }}
+    <a data-fancybox="gallery" href="{{ .RelPermalink }}">
+      <img src="{{ $thumb.RelPermalink }}" alt="{{ .Params.alt }}">
+    </a>
+  {{ end }}
+</div>

@@ -1,0 +1,8 @@
+<!-- Editing out the month view because Co-op parents prefer the agenda view anyway -- 
+<div class="hidden-phone visible-tablet visible-desktop responsive-iframe-container">
+	<iframe {{ with .Get "src" }}src="{{.}}"{{end}} style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+</div>
+-->
+<div class="visible-phone visible-tablet visible-desktop responsive-iframe-container">
+	<iframe {{ with .Get "src" }}src="{{.}}&mode=AGENDA"{{end}} style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+</div>

@@ -900,10 +900,6 @@ table tr td :last-child {
   font-size: smaller;
 }
 
-.spaceout {
-  clear: both;
-}
-
 .end-of-content {
   margin-bottom: 25px;
 }
