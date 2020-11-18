@@ -422,7 +422,7 @@ footer a:hover {
 }
 
 footer .list-inline {
-  margin: 0;
+  margin: 0 5px;
   padding: 0;
   margin-bottom: 1.875rem;
 }
@@ -456,14 +456,6 @@ footer .footer-custom-content {
   footer .footer-custom-content {
     font-size: 1rem;
   }
-}
-
-footer .fa-stack {
-  color: var(--fa, #022153);
-}
-
-footer .fa-stack:hover {
-  color: var(--secondary, #007cc4);
 }
 
 footer .contact {
