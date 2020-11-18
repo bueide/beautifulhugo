@@ -70,9 +70,14 @@
             {{ .Site.LastChange.Format "2006" }}
           {{ end }}
 
-          {{ if .Site.Title }}
+          {{ if .Site.Params.homeTitle }}
             &nbsp;&bull;&nbsp;
-            <a href="{{ "" | absLangURL }}">{{ .Site.Title }}</a>
+            <a href="{{ "" | absLangURL }}">{{ .Site.Params.homeTitle }}</a>
+          {{ else }}
+            {{if .Site.Title}}
+              &nbsp;&bull;&nbsp;
+              <a href="{{ "" | absLangURL }}">{{ .Site.Title }}</a>
+            {{ end }}
           {{ end }}
         </p>
         <p class="credits contact text-muted">
