@@ -47,7 +47,11 @@
 
           {{ if .Site.Title }}
             &nbsp;&bull;&nbsp;
-            <a href="{{ "" | absLangURL }}">{{ .Site.Title }}</a>
+            <a href="{{ "" | absLangURL }}">{{ .Site.homeTitle }}</a>
+          {{ end }}
+        </p>
+        <p class="credits contact text-muted">
+          {{ if .Site.Params.address }}<a href="{{ .Site.Params.gmaps }}">{{ .Site.Params.address }}</a> | <a href="tel: {{ .Site.Params.phone }}">{{ .Site.Params.phone }}</a>
           {{ end }}
         </p>
       </div>
