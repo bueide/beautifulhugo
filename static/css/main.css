@@ -409,10 +409,6 @@ footer {
   font-size: 0.875rem;
 }
 
-footer p.text-muted {
-  color: #777777 !important;
-}
-
 footer a {
   color: var(--surface3, #f9f9f9);
 }
@@ -422,10 +418,11 @@ footer a:hover {
 }
 
 footer .list-inline {
-  margin: 0 5px;
+  margin: 0;
   padding: 0;
   margin-bottom: 1.875rem;
 }
+
 footer .copyright {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   text-align: center;
