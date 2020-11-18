@@ -102,7 +102,9 @@
 {{- if .Site.Params.selfHosted -}}
 <script src="{{ "js/jquery.fancybox.min.js" | absURL }}"></script>
 {{- else -}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous"></script>
+{{- if isset .Params "gallery" -}} <!-- Conditionally loads fancybox JS, only if the front matter of a page contains a custom Param for "gallery: true" -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous"></script>
+  {{- end -}}
 {{- end -}}
 
 {{- partial "footer_custom.html" . }}
