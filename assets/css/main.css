@@ -106,7 +106,6 @@ hr.small {
   border-width: 0.25rem;
   border-color: inherit;
   border-radius: 0.1875rem;
-  color: var(--surface3, #f9f9f9);
 }
 
 /* fix in-page anchors to not be behind fixed header */
