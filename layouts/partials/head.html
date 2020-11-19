@@ -70,11 +70,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap" rel="stylesheet"> 
   {{- end -}}
   
+  {{- if isset .Params "gallery" -}} <!-- Conditionally loads fancybox JS, only if the front matter of a page contains a custom Param for "gallery: true" -->
   {{- if .Site.Params.selfHosted -}}
     {{ $fancyboxCSS := resources.Get "css/jquery.fancybox.min.css" | fingerprint }}
     <link href="{{ $fancyboxCSS.Permalink }}" rel="stylesheet" integrity="{{ $fancyboxCSS.Data.Integrity }}" crossorigin="anonymous">
   {{- else -}}
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" />
+  {{- end -}}
   {{- end -}}
 
 {{- partial "head_custom.html" . }}
