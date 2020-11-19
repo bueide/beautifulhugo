@@ -815,6 +815,14 @@ nav.top-nav-short-permanent ~ header > .intro-header.big-img {
   }
 }
 
+.intro-header.no-img {
+  color: var(--pager, #04378b);
+}
+
+.intro-header.no-img hr {
+  color: var(--pager, #04378b);
+}
+
 /* --- Pagination --- */
 
 .pagination {
