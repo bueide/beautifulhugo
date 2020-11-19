@@ -13,7 +13,6 @@
   --secondary: #007cc4;
   --tertiary: #00bed4;
   --quaternary: #6bfbce;
-  --fa: #022153;
   --pager: #04378b;
 }
 
@@ -34,7 +33,6 @@
   --secondary: #98dbfe;
   --tertiary: #61eef7;
   --quaternary: #71faca;
-  --fa: #353535;
   --pager: #c1cae6;
 }
 
@@ -94,12 +92,21 @@ blockquote {
 blockquote p:first-child {
   margin-top: 0;
 }
+
+hr {
+  margin-top:1rem;
+  margin-bottom:1rem;
+  border:0;
+  border-top:1px solid var(--element4, #d8d8d8);
+ }
+
 hr.small {
   max-width: 6.25rem;
   margin: 1rem auto;
   border-width: 0.25rem;
   border-color: inherit;
   border-radius: 0.1875rem;
+  color: var(--surface3, #f9f9f9);
 }
 
 /* fix in-page anchors to not be behind fixed header */
@@ -495,7 +502,7 @@ footer .contact {
 .post-preview a {
   text-decoration: none;
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  color: var(--primary, #04378b);
+  color: var(--pager, #04378b);
 }
 
 .post-preview a:focus,
