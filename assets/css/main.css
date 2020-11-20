@@ -964,7 +964,7 @@ table tr td :last-child {
   align-items: center;
   justify-content: center;
   padding: 0rem;
-  margin: 0 auto 0;
+  margin: 1px auto 0;
   font-family: var(--sans);
   font-size: 1rem;
   font-weight: 600;
@@ -998,29 +998,6 @@ table tr td :last-child {
     right: 5rem;
   }
 }
-
-/*
-.color-mode__btn svg {
-  width: 15px;
-  height: 15px;
-  margin-top: 16px;
-  margin-right: 15px;
-  position: relative;
-  fill: var(--surface3, #f9f9f9);
-  stroke: #222222;
-  stroke: var(--element2);
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 1.5px;
-}
-
-.color-mode__btn:hover svg,
-.color-mode__btn:focus svg, .color-mode__btn:focus {
-  outline: none;
-  fill: #fff7d6;
-  fill: var(--tertiary);
-}
-*/
 
 /* --- Social media sharing section --- */
 
