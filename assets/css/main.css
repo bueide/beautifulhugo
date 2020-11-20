@@ -68,6 +68,7 @@ h1 {
 }
 h2 {
   font-size: 1.875rem;
+  color: var(--pager, #04378b);
 }
 h3 {
   font-size: 1.5rem;
