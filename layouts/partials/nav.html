@@ -59,22 +59,49 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--surface3, #f9f9f9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon" id="moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
       </span>
     </div>
-    
-    {{ if isset .Site.Params "logo" }}
-      <div class="avatar-container dark--hidden">
+	
+	  {{ if isset .Site.Params "logo" }}
+    {{ if .Site.Params.logoWebp }}
+	  <div class="avatar-container dark--hidden">
         <div class="avatar-img-border">
           <a title="{{ .Site.Title }}" href="{{ "" | absLangURL }}">
-            <img class="avatar-img" src="{{ .Site.Params.logo | absURL }}" alt="{{ .Site.Title }} Logo" />
+            <figure>
+              <picture>
+                <source class="avatar-img" srcset="{{ .Site.Params.logoWebp }}" alt="{{ .Site.Title }} Logo" type="image/webp">
+		        <img class="avatar-img" loading="lazy" defer="" src="{{ .Site.Params.logo | absURL }}" alt="{{ .Site.Title }} Logo"/>
+		      </picture>
+		    </figure>
           </a>
         </div>
       </div>
       <div class="avatar-container light--hidden">
         <div class="avatar-img-border">
           <a title="{{ .Site.Title }}" href="{{ "" | absLangURL }}">
-            <img class="avatar-img" src="{{ .Site.Params.darkLogo | absURL }}" alt="{{ .Site.Title }} Logo" />
+            <figure>
+              <picture>
+                <source class="avatar-img" srcset="{{ .Site.Params.darkLogoWebp }}" alt="{{ .Site.Title }} Logo" type="image/webp">
+		        <img class="avatar-img" loading="lazy" defer="" src="{{ .Site.Params.darkLogo | absURL }}" alt="{{ .Site.Title }} Logo"/>
+		      </picture>
+		    </figure>
           </a>
         </div>
-      </div>
-    {{ end }}
+	  </div>
+	  {{ else }}
+        <div class="avatar-container dark--hidden">
+          <div class="avatar-img-border">
+            <a title="{{ .Site.Title }}" href="{{ "" | absLangURL }}">
+              <img class="avatar-img" src="{{ .Site.Params.logo | absURL }}" alt="{{ .Site.Title }} Logo"/>
+            </a>
+          </div>
+        </div>
+        <div class="avatar-container light--hidden">
+          <div class="avatar-img-border">
+            <a title="{{ .Site.Title }}" href="{{ "" | absLangURL }}">
+              <img class="avatar-img" src="{{ .Site.Params.darkLogo | absURL }}" alt="{{ .Site.Title }} Logo"/>
+            </a>
+          </div>
+        </div>
+	  {{ end }}
+	{{ end }}
   </div>
 </nav>
