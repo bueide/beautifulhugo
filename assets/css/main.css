@@ -481,6 +481,11 @@ footer .contact {
   background: var(--surface2, #e6e6e6);
 }
 
+.card a:hover,
+.card a:focus {
+  color: var(--tertiary, #00BED4);
+}
+
 .card-title {
   color: var(--pager, #04378b);
 }
