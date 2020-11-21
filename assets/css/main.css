@@ -475,11 +475,22 @@ footer .contact {
   }
 }
 
-/* --- Card on Home Page --- */
+/* --- Cards on Home Page --- */
 
 .card {
   background: var(--surface2, #e6e6e6);
-} 
+}
+
+.card .btn-custom-card {
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  padding: 0.625rem 0.3125rem;
+  background-color: var(--surface2, #f2f2f2);
+  color: var(--pager, #04378b);
+}
 
 /* --- Post preview (feed) --- */
 
