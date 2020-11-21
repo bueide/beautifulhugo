@@ -481,16 +481,22 @@ footer .contact {
   background: var(--surface2, #e6e6e6);
 }
 
-.card .btn-custom-card {
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  text-transform: uppercase;
-  font-size: 0.875rem;
-  font-weight: 800;
-  letter-spacing: 1px;
-  padding: 0.625rem 0.3125rem;
-  background-color: var(--surface2, #f2f2f2);
+.card-title {
   color: var(--pager, #04378b);
 }
+
+.card .btn-custom-card {  
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-transform: uppercase;  
+  font-size: 0.875rem;  
+  font-weight: 800;  
+  letter-spacing: 1px;  
+  padding: 0.625rem 0.3125rem;  
+  background-color: var(--surface1, #e6e6e6);  
+  color: var(--pager, #04378b);  
+  border-radius: 10px;  
+  border: 1px solid var(--pager);  
+} 
 
 /* --- Post preview (feed) --- */
 
