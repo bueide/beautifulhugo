@@ -63,7 +63,7 @@
         {{ end }}
       {{ end }}
 
-      &nbsp;&bull;&nbsp;&copy;
+      &copy;
       {{ if .Site.Params.since }}
         {{ .Site.Params.since }} - {{ .Site.LastChange.Format "2006" }}
       {{ else }}
@@ -81,7 +81,7 @@
       {{ end }}
     </p>
     <p class="credits contact">
-      {{ if .Site.Author.address }}<a href="{{ .Site.Author.gmaps }}">{{ .Site.Author.address }}</a> | <a href="tel: {{ .Site.Author.phone }}">{{ .Site.Author.phone }}</a>
+      {{ if .Site.Author.address }}<a href="{{ .Site.Author.gmaps }}">{{ .Site.Author.address }}</a>&nbsp;&bull;&nbsp;<a href="tel: {{ .Site.Author.phone }}">{{ .Site.Author.phone }}</a>
       {{ end }}
     </p>
   </div>
