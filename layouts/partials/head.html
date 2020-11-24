@@ -62,6 +62,14 @@
   <!-- <link rel="stylesheet" href="{{ "css/main.css" | absURL }}" /> -->
 
   {{- if .Site.Params.selfHosted -}}
+    {{ $bodyFont := resources.Get "/fonts/source-serif-pro/WOFF2/TTF/SourceSerifPro-Regular.ttf.woff2" }}
+    <link href="{{ $bodyFont.Permalink }}" rel="preload" as="font" type="font/woff2" crossorigin="anonymous">
+    {{ $headerFont := resources.Get "/fonts/cooper-hewitt/CooperHewitt-Heavy.woff" }}
+    <link href="{{ $headerFont.Permalink }}" rel="preload" as="font" type="font/woff" crossorigin="anonymous">
+    {{ $navFont := resources.Get "/fonts/cooper-hewitt/CooperHewitt-Book.woff" }}
+    <link href="{{ $navFont.Permalink }}" rel="preload" as="font" type="font/woff" crossorigin="anonymous">
+    {{ $footerFont := resources.Get "/fonts/cooper-hewitt/CooperHewitt-Light.woff" }}
+    <link href="{{ $footerFont.Permalink }}" rel="preload" as="font" type="font/woff" integrity="{{ $heading.Data.Integrity }}" crossorigin="anonymous">
     {{ $fonts := resources.Get "css/fonts.css" | fingerprint }}
     <link href="{{ $fonts.Permalink }}" rel="preload" as="style" type="text/css" media="all" integrity="{{ $fonts.Data.Integrity }}" crossorigin="anonymous">
     <link href="{{ $fonts.Permalink }}" rel="stylesheet" integrity="{{ $fonts.Data.Integrity }}" crossorigin="anonymous">
