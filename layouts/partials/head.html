@@ -63,6 +63,7 @@
 
   {{- if .Site.Params.selfHosted -}}
     {{ $fonts := resources.Get "css/fonts.css" | fingerprint }}
+    <link href="{{ $fonts.Permalink }}" rel="preload" as="style" type="text/css" media="all" integrity="{{ $fonts.Data.Integrity }}" crossorigin="anonymous">
     <link href="{{ $fonts.Permalink }}" rel="stylesheet" integrity="{{ $fonts.Data.Integrity }}" crossorigin="anonymous">
   {{- else -}}
   <link rel="preconnect" href="https://fonts.gstatic.com">
