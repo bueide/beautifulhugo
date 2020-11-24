@@ -69,7 +69,7 @@
     {{ $navFont := resources.Get "/fonts/cooper-hewitt/CooperHewitt-Book.woff" }}
     <link href="{{ $navFont.Permalink }}" rel="preload" as="font" type="font/woff" crossorigin="anonymous">
     {{ $footerFont := resources.Get "/fonts/cooper-hewitt/CooperHewitt-Light.woff" }}
-    <link href="{{ $footerFont.Permalink }}" rel="preload" as="font" type="font/woff" integrity="{{ $heading.Data.Integrity }}" crossorigin="anonymous">
+    <link href="{{ $footerFont.Permalink }}" rel="preload" as="font" type="font/woff" crossorigin="anonymous">
     {{ $fonts := resources.Get "css/fonts.css" | fingerprint }}
     <link href="{{ $fonts.Permalink }}" rel="preload" as="style" type="text/css" media="all" integrity="{{ $fonts.Data.Integrity }}" crossorigin="anonymous">
     <link href="{{ $fonts.Permalink }}" rel="stylesheet" integrity="{{ $fonts.Data.Integrity }}" crossorigin="anonymous">
