@@ -62,10 +62,6 @@
   <!-- <link rel="stylesheet" href="{{ "css/main.css" | absURL }}" /> -->
 
   {{- if .Site.Params.selfHosted -}}
-    {{ $body := resources.Get "/fonts/source-serif-pro/WOFF2/TTF/SourceSerifPro-Regular.ttf.woff2" | fingerprint}}
-    <link href="{{ $body.Permalink }}" rel="preload" as="font" type="font/woff2" integrity="{{ $body.Data.Integrity }}" crossorigin="anonymous">
-    {{ $heading := resources.Get "/fonts/cooper-hewitt/CooperHewitt-Heavy.woff" | fingerprint}}
-    <link href="{{ $heading.Permalink }}" rel="preload" as="font" type="font/woff" integrity="{{ $heading.Data.Integrity }}" crossorigin="anonymous">
     {{ $fonts := resources.Get "css/fonts.css" | fingerprint }}
     <link href="{{ $fonts.Permalink }}" rel="preload" as="style" type="text/css" media="all" integrity="{{ $fonts.Data.Integrity }}" crossorigin="anonymous">
     <link href="{{ $fonts.Permalink }}" rel="stylesheet" integrity="{{ $fonts.Data.Integrity }}" crossorigin="anonymous">
