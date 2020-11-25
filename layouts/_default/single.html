@@ -44,12 +44,12 @@
         <ul class="pagination blog-pager">
           {{ if .PrevInSection }}
             <li class="page-item previous">
-              <a class="page-link" href="{{ .PrevInSection.Permalink }}" data-toggle="tooltip" data-placement="top" title="{{ .PrevInSection.Title }}">&larr; {{ i18n "previousPost" }}</a>
+              <a class="page-link" href="{{ .PrevInSection.Permalink }}" data-toggle="tooltip" data-placement="top" title="{{ .PrevInSection.Title }}">&larr; Previous Post</a>
             </li>
           {{ end }}
           {{ if .NextInSection }}
             <li class="page-item next">
-              <a class="page-link" href="{{ .NextInSection.Permalink }}" data-toggle="tooltip" data-placement="top" title="{{ .NextInSection.Title }}">{{ i18n "nextPost" }} &rarr;</a>
+              <a class="page-link" href="{{ .NextInSection.Permalink }}" data-toggle="tooltip" data-placement="top" title="{{ .NextInSection.Title }}">Next Post &rarr;</a>
             </li>
           {{ end }}
         </ul>
