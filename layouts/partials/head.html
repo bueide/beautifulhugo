@@ -24,8 +24,7 @@
 {{- end }}
 
   <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Site Title, Description, Author, and Favicon -->
 {{- with ($.Scratch.Get "Title") }}
   <title>{{ . }} - {{ $.Site.Title }}</title>
@@ -37,54 +36,71 @@
   <meta name="author" content="{{ . }}"/>
 {{- end }}
 {{- partial "seo/main.html" . }}  
-{{- with .Site.Params.favicon }}
-  <link href='{{ . | absURL }}' rel='icon' type='image/x-icon'/>
-{{- end -}}
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/img/favicon/site.webmanifest">
+  <link rel="mask-icon" href="/img/favicon/safari-pinned-tab.svg" color="#143d8c">
+  <link rel="shortcut icon" href="/img/favicon/favicon.ico">
+  <meta name="msapplication-TileColor" content="#2b5797">
+  <meta name="msapplication-config" content="/img/favicon/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+
 <!-- Hugo Version number -->
   {{ hugo.Generator -}}
+
+  {{ $noJS := resources.Get "js/nojs.js" }}
+  <script src="{{ $noJS.RelPermalink }}"></script>
+  
 <!-- Links and stylesheets -->
   <link rel="alternate" href="{{ "index.xml" | absLangURL }}" type="application/rss+xml" title="{{ .Site.Title }}">
 
-  {{- if .Site.Params.selfHosted -}}
-    {{ $bootstrapCSS := resources.Get "css/bootstrap.min.css" | fingerprint }}
-    <link defer href="{{ $bootstrapCSS.Permalink }}" rel="stylesheet" integrity="{{ $bootstrapCSS.Data.Integrity }}" crossorigin="anonymous">
+ {{- if .Site.Params.selfHosted -}}
+    {{ $bootstrapCSS := resources.Get "css/bootstrap.min.css" | fingerprint "sha512" }}
+    <link href="{{ $bootstrapCSS.RelPermalink }}" rel="stylesheet" integrity="{{ $bootstrapCSS.Data.Integrity }}" crossorigin="anonymous">
   {{- else -}}
-  <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-  {{- end -}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  {{- end -}} 
 
   {{- if .Site.IsServer -}}
-    {{ $style := resources.Get "css/main.css" | fingerprint }}
-    <link href="{{ $style.Permalink }}" rel="stylesheet" integrity="{{ $style.Data.Integrity }}" crossorigin="anonymous">
+    {{ $style := resources.Get "css/main.css" | postCSS | fingerprint "sha512" }}
+    <link href="{{ $style.RelPermalink }}" rel="stylesheet" integrity="{{ $style.Data.Integrity }}" crossorigin="anonymous">
   {{- else -}}
-    {{ $style := resources.Get "css/main.css" | minify | fingerprint }}
-    <link href="{{ $style.Permalink }}" rel="stylesheet" integrity="{{ $style.Data.Integrity }}" crossorigin="anonymous">
+    {{ $style := resources.Get "css/main.css" | postCSS | minify | fingerprint "sha512" }}
+    <link href="{{ $style.RelPermalink }}" rel="stylesheet" integrity="{{ $style.Data.Integrity }}" crossorigin="anonymous">
   {{- end -}}
-  <!-- <link rel="stylesheet" href="{{ "css/main.css" | absURL }}" /> -->
 
   {{- if .Site.Params.selfHosted -}}
     {{ $bodyFont := resources.Get "/fonts/source-serif-pro/WOFF2/TTF/SourceSerifPro-Regular.ttf.woff2" }}
-    <link href="{{ $bodyFont.Permalink }}" rel="preload" as="font" type="font/woff2" crossorigin="anonymous">
-    {{ $headerFont := resources.Get "/fonts/cooper-hewitt/CooperHewitt-Heavy.woff" }}
-    <link href="{{ $headerFont.Permalink }}" rel="preload" as="font" type="font/woff" crossorigin="anonymous">
-    {{ $navFont := resources.Get "/fonts/cooper-hewitt/CooperHewitt-Book.woff" }}
-    <link href="{{ $navFont.Permalink }}" rel="preload" as="font" type="font/woff" crossorigin="anonymous">
-    {{ $footerFont := resources.Get "/fonts/cooper-hewitt/CooperHewitt-Light.woff" }}
-    <link href="{{ $footerFont.Permalink }}" rel="preload" as="font" type="font/woff" crossorigin="anonymous">
-    {{ $fonts := resources.Get "css/fonts.css" | fingerprint }}
-    <link href="{{ $fonts.Permalink }}" rel="preload" as="style" type="text/css" media="all" integrity="{{ $fonts.Data.Integrity }}" crossorigin="anonymous">
-    <link href="{{ $fonts.Permalink }}" rel="stylesheet" integrity="{{ $fonts.Data.Integrity }}" crossorigin="anonymous">
+    <link href="{{ $bodyFont.RelPermalink }}" rel="preload" as="font" type="font/woff2" crossorigin="anonymous">
+    {{ $headerFont := resources.Get "/fonts/cooper-hewitt/cooperhewitt-heavy-webfont.woff2" }}
+    <link href="{{ $headerFont.RelPermalink }}" rel="preload" as="font" type="font/woff2" crossorigin="anonymous">
+    {{ $navFont := resources.Get "/fonts/cooper-hewitt/cooperhewitt-semibold-webfont.woff2" }}
+    <link href="{{ $navFont.RelPermalink }}" rel="preload" as="font" type="font/woff2" crossorigin="anonymous">
+    {{ $footerFont := resources.Get "/fonts/cooper-hewitt/cooperhewitt-light-webfont.woff2" }}
+    <link href="{{ $footerFont.RelPermalink }}" rel="preload" as="font" type="font/woff2" crossorigin="anonymous">
+    {{ $fonts := resources.Get "css/fonts.css" | fingerprint "sha512" }}
+    <link href="{{ $fonts.RelPermalink }}" rel="preload" as="style" type="text/css" media="all" integrity="{{ $fonts.Data.Integrity }}" crossorigin="anonymous">
+    <link href="{{ $fonts.RelPermalink }}" rel="stylesheet" integrity="{{ $fonts.Data.Integrity }}" crossorigin="anonymous">
   {{- else -}}
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"> 
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap" rel="stylesheet"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap" rel="stylesheet"> 
   {{- end -}}
   
   {{- if isset .Params "gallery" -}} <!-- Conditionally loads fancybox JS, only if the front matter of a page contains a custom Param for "gallery: true" -->
+    {{- if .Site.IsServer -}}
+      {{ $gallery := resources.Get "css/gallery.css" | postCSS | fingerprint "sha512" }}
+      <link href="{{ $gallery.RelPermalink }}" rel="stylesheet" integrity="{{ $gallery.Data.Integrity }}" crossorigin="anonymous">
+    {{- else -}}
+      {{ $gallery := resources.Get "css/gallery.css" | postCSS | minify | fingerprint "sha512" }}
+      <link href="{{ $gallery.RelPermalink }}" rel="stylesheet" integrity="{{ $gallery.Data.Integrity }}" crossorigin="anonymous">
+    {{- end -}}
   {{- if .Site.Params.selfHosted -}}
-    {{ $fancyboxCSS := resources.Get "css/jquery.fancybox.min.css" | fingerprint }}
-    <link href="{{ $fancyboxCSS.Permalink }}" rel="stylesheet" integrity="{{ $fancyboxCSS.Data.Integrity }}" crossorigin="anonymous">
+    {{ $glightboxCSS := resources.Get "css/glightbox.min.css" | fingerprint "sha512" }}
+    <link href="{{ $glightboxCSS.RelPermalink }}" rel="stylesheet" integrity="{{ $glightboxCSS.Data.Integrity }}" crossorigin="anonymous">
   {{- else -}}
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3.0.6/dist/css/glightbox.min.css" integrity="sha256-hOUGlhfebwFZKA5WEFa54w9RALnfEzk5Z2TMjoNx59s=" crossorigin="anonymous">
   {{- end -}}
   {{- end -}}
 

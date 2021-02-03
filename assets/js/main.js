@@ -1,197 +1,59 @@
 var main = {
-
-  bigImgEl : null,
-  numImgs : null,
-
   init : function() {
-    // Shorten the navbar after scrolling a little bit down
-    $(window).scroll(function() {
-        if ($(".navbar").offset().top > 50) {
-            $(".navbar").addClass("top-nav-short");
+
+    // Shorten the navbar after scrolling a little bit down	
+
+    const nav = document.querySelector('nav');  
+    window.onscroll = () => {
+      let rect = nav.getBoundingClientRect();
+      let offset = rect.top + window.scrollY;
+        if (offset > 50) {
+          nav.classList.add('top-nav-short');
         } else {
-            $(".navbar").removeClass("top-nav-short");
+          nav.classList.remove('top-nav-short');
         }
-    });
+       }
 
     // On mobile, hide the avatar when expanding the navbar menu
-    $('#navbarSupportedContent').on('show.bs.collapse', function () {
-      $(".navbar").addClass("top-nav-expanded");
-    });
-    $('#navbarSupportedContent').on('hidden.bs.collapse', function () {
-      $(".navbar").removeClass("top-nav-expanded");
-    });
+
+    const navID = document.getElementById('navbarSupportedContent');
+    navID.addEventListener('show.bs.collapse', () => nav.classList.add('top-nav-expanded'));
+    navID.addEventListener('hidden.bs.collapse', () => nav.classList.remove('top-nav-expanded'));
 
     // On mobile, when clicking on a multi-level navbar menu, show the child links
-    $('#main-navbar').on("click", ".navlinks-parent", function(e) {
-      var target = e.target;
-      $.each($(".navlinks-parent"), function(key, value) {
+
+    const navLink = document.getElementsByClassName('nav-link');
+    navID.addEventListener('click', navLink, e => {
+      let target = e.target;
+      navLink.forEach((value, key) => {
         if (value == target) {
-          $(value).parent().toggleClass("show-children");
+          value.parentNode.classList.toggle('show-children');
         } else {
-          $(value).parent().removeClass("show-children");
+          value.parentNode.classList.remove('show-children');
         }
       });
     });
-
-    // Ensure nested navbar menus are not longer than the menu header
-    var menus = $(".navlinks-container");
-    if (menus.length > 0) {
-      var navbar = $("#main-navbar").find("ul");
-      var fakeMenuHtml = "<li class='fake-menu' style='display:none;'><a></a></li>";
-      navbar.append(fakeMenuHtml);
-      var fakeMenu = $(".fake-menu");
-
-      $.each(menus, function(i) {
-        var parent = $(menus[i]).find(".navlinks-parent");
-        var children = $(menus[i]).find(".navlinks-children a");
-        var words = [];
-        $.each(children, function(idx, el) { words = words.concat($(el).text().trim().split(/\s+/)); });
-        var maxwidth = 0;
-        $.each(words, function(id, word) {
-          fakeMenu.html("<a>" + word + "</a>");
-          var width =  fakeMenu.width();
-          if (width > maxwidth) {
-            maxwidth = width;
-          }
-        });
-        $(menus[i]).css('min-width', maxwidth + 'px')
-      });
-
-      fakeMenu.remove();
-    }
-
-    // show the big header image
-    main.initImgs();
   },
-
-  initImgs : function() {
-    // If the page was large images to randomly select from, choose an image
-    if ($("#header-big-imgs").length > 0) {
-      main.bigImgEl = $("#header-big-imgs");
-      main.numImgs = main.bigImgEl.attr("data-num-img");
-
-          // 2fc73a3a967e97599c9763d05e564189
-    // set an initial image
-    var imgInfo = main.getImgInfo();
-    var src = imgInfo.src;
-    var desc = imgInfo.desc;
-    var position = imgInfo.position;
-      main.setImg(src, desc, position);
-
-    // For better UX, prefetch the next image so that it will already be loaded when we want to show it
-      var getNextImg = function() {
-      var imgInfo = main.getImgInfo();
-      var src = imgInfo.src;
-      var desc = imgInfo.desc;
-      var position = imgInfo.position;
-
-    var prefetchImg = new Image();
-      prefetchImg.src = src;
-    // if I want to do something once the image is ready: `prefetchImg.onload = function(){}`
-
-      setTimeout(function(){
-                  var img = $("<div></div>").addClass("big-img-transition").css("background-image", 'url(' + src + ')');
-        if (position !== undefined) {
-          img.css("background-position", position);
-        }
-        $(".intro-header.big-img").prepend(img);
-        setTimeout(function(){ img.css("opacity", "1"); }, 50);
-
-      // after the animation of fading in the new image is done, prefetch the next one
-        //img.one("transitioned webkitTransitionEnd oTransitionEnd MSTransitionEnd", function(){
-      setTimeout(function() {
-        main.setImg(src, desc, position);
-      img.remove();
-        getNextImg();
-      }, 1000);
-        //});
-      }, 6000);
-      };
-
-    // If there are multiple images, cycle through them
-    if (main.numImgs > 1) {
-        getNextImg();
-    }
-    }
-  },
-
-  getImgInfo : function() {
-    var randNum = Math.floor((Math.random() * main.numImgs) + 1);
-    var src = main.bigImgEl.attr("data-img-src-" + randNum);
-  var desc = main.bigImgEl.attr("data-img-desc-" + randNum);
-  var position = main.bigImgEl.attr("data-img-position-" + randNum);
-
-  return {
-    src : src,
-    desc : desc,
-    position : position
-  }
-  },
-
-  setImg : function(src, desc, position) {
-  $(".intro-header.big-img").css("background-image", 'url(' + src + ')');
-  if (position !== undefined) {
-    $(".intro-header.big-img").css("background-position", position);
-  }
-  else {
-    // Remove background-position if added to the prev image.
-    $(".intro-header.big-img").css("background-position", "");
-  }
-  if (typeof desc !== typeof undefined && desc !== false) {
-    // Check for Markdown link
-    var mdLinkRe = /\[(.*?)\]\((.+?)\)/;
-    if (desc.match(mdLinkRe)) {
-      // Split desc into parts, extracting md links
-      var splitDesc = desc.split(mdLinkRe);
-
-      // Build new description
-      var imageDesc = $(".img-desc");
-      splitDesc.forEach(function (element, index){
-        // Check element type. If links every 2nd element is link text, and every 3rd link url
-        if (index % 3 === 0) {
-          // Regular text, just append it
-          imageDesc.append(element);
-        }
-        if (index % 3 === 1) {
-          // Link text - do nothing at the moment
-        }
-        if (index % 3 === 2) {
-          // Link url - Create anchor tag with text
-          var link = $("<a>", {
-            "href": element,
-            "target": "_blank",
-            "rel": "noopener noreferrer"
-          }).text(splitDesc[index - 1]);
-          imageDesc.append(link);
-        }
-      });
-      imageDesc.show();
-    } else {
-      $(".img-desc").text(desc).show();
-    }
-  } else {
-    $(".img-desc").hide();
-  }
-  }
 };
+document.addEventListener('DOMContentLoaded', main.init);
 
 const toggleColorMode = e => {
   // Switch to Light Mode
   if (e.currentTarget.classList.contains("light--hidden")) {
     // Sets the custom html attribute
-    document.documentElement.setAttribute("color-mode", "light");
+    document.documentElement.setAttribute("data-color-mode", "light");
     
     // Sets the user's preferences in local storage
-    localStorage.setItem("color-mode", "light");
+    localStorage.setItem("data-color-mode", "light");
     return;
   }
   
   /* Switch to Dark Mode
   Sets the custom html attribute */
-  document.documentElement.setAttribute("color-mode", "dark");
+  document.documentElement.setAttribute("data-color-mode", "dark");
   
   // Sets the user's preference in local storge 
-  localStorage.setItem("color-mode", "dark");
+  localStorage.setItem("data-color-mode", "dark");
 };
 
 // Get the buttons in the DOM
@@ -204,10 +66,8 @@ toggleColorButtons.forEach(btn => {
 
 // Respect user's color scheme preference 
 if (
-  localStorage.getItem('color-mode') === 'dark' ||
-  (window.matchMedia( '(prefers-color-scheme: dark)').matches && !localStorage.getItem('color-mode'))
+  localStorage.getItem('data-color-mode') === 'dark' ||
+  (window.matchMedia( '(prefers-color-scheme: dark)').matches && !localStorage.getItem('data-color-mode'))
 ) {
-  document.documentElement.setAttribute('color-mode', 'dark')
+  document.documentElement.setAttribute('data-color-mode', 'dark')
 }
-
-document.addEventListener('DOMContentLoaded', main.init);

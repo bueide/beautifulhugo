@@ -1,21 +1,21 @@
 <nav class="navbar navbar-custom navbar-expand-lg fixed-top top-nav-regular">
   <a class="navbar-brand" href="{{ "" | absLangURL }}">{{ .Site.Title }}</a>
-  <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="sr-only">{{ i18n "toggleNavigation" }}</span>
+  <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="visually-hidden">Toggle Navigation</span>
     <span class="navbar-toggler-icon">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--surface3, #f9f9f9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
     </span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav ms-auto">
         {{ range .Site.Menus.main.ByWeight }}
           {{ if .HasChildren }}
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ .Name }}</a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="nav-link dropdown-toggle" href="#" tabindex="0" id="navbarDropdown-{{ .Identifier }}" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ .Name }}</a>
+              <div class="dropdown-menu" role="menu" aria-labelledby="navbarDropdown-{{ .Identifier }}">
                 {{ range .Children }}
-                  <a class="dropdown-item" href="{{ .URL | relLangURL }}">{{ .Name }}</a>
+                  <a class="dropdown-item" role="menuitem" href="{{ .URL | relLangURL }}">{{ .Name }}</a>
                 {{ end }}
               </div>
             </li>
@@ -29,7 +29,7 @@
         {{ if .Site.IsMultiLingual }}
           {{ if ge (len .Site.Languages) 3 }}
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ i18n "languageSwitcherLabel" }}</a>
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ i18n "languageSwitcherLabel" }}</a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 {{ range .Site.Languages }}
                   {{ if not (eq .Lang $.Site.Language.Lang) }}
@@ -52,12 +52,12 @@
     </div>
     
     <div class="lightdark-toggle">
-      <span class="color-mode__btn light--hidden" aria-label="Toggle Light Mode" title="Light Mode">
+      <button type="button" class="color-mode__btn light--hidden" aria-label="Toggle Light Mode" title="Light Mode">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--surface3, #f9f9f9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun" id="sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-      </span>
-      <span class="color-mode__btn dark--hidden" aria-label="Toggle Dark Mode" title="Dark Mode">
+      </button>
+      <button type="button" class="color-mode__btn dark--hidden" aria-label="Toggle Dark Mode" title="Dark Mode">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--surface3, #f9f9f9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon" id="moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-      </span>
+      </button>
     </div>
 	
 	  {{ if isset .Site.Params "logo" }}
@@ -67,8 +67,8 @@
           <a title="{{ .Site.Title }}" href="{{ "" | absLangURL }}">
             <figure>
               <picture>
-                <source class="avatar-img" srcset="{{ .Site.Params.logoWebp }}" alt="{{ .Site.Title }} Logo" type="image/webp">
-		        <img class="avatar-img" loading="lazy" defer="" src="{{ .Site.Params.logo | absURL }}" alt="{{ .Site.Title }} Logo"/>
+                <source class="avatar-img" srcset="{{ .Site.Params.logoWebp }}" type="image/webp">
+		        <img class="avatar-img" loading="lazy" src="{{ .Site.Params.logo | absURL }}" alt="{{ .Site.Title }} Logo"/>
 		      </picture>
 		    </figure>
           </a>
@@ -79,8 +79,8 @@
           <a title="{{ .Site.Title }}" href="{{ "" | absLangURL }}">
             <figure>
               <picture>
-                <source class="avatar-img" srcset="{{ .Site.Params.darkLogoWebp }}" alt="{{ .Site.Title }} Logo" type="image/webp">
-		        <img class="avatar-img" loading="lazy" defer="" src="{{ .Site.Params.darkLogo | absURL }}" alt="{{ .Site.Title }} Logo"/>
+                <source class="avatar-img" srcset="{{ .Site.Params.darkLogoWebp }}" type="image/webp">
+		        <img class="avatar-img" loading="lazy" src="{{ .Site.Params.darkLogo | absURL }}" alt="{{ .Site.Title }} Logo"/>
 		      </picture>
 		    </figure>
           </a>
@@ -103,5 +103,4 @@
         </div>
 	  {{ end }}
 	{{ end }}
-  </div>
 </nav>
